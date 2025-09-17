@@ -1,0 +1,13 @@
+
+---
+import Base from "../layouts/BaseLayout.astro";
+---
+<Base title="Contact">
+  <h1 class="text-3xl font-bold mb-6">Contact</h1>
+  <form class="card p-5 space-y-3" action="https://formspree.io/f/mdklvkaj" method="POST">
+    <input class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="name" placeholder="Your name" required />
+    <input class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="email" type="email" placeholder="Email" required />
+    <textarea class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="message" placeholder="Message" rows="5" required></textarea>
+    <button class="px-4 py-2 rounded-xl bg-brand text-white" type="submit">Send</button>
+  </form>
+</Base>

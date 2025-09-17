@@ -1,0 +1,16 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0f1a;
+  --card: #10162a;
+  --text: #e6e9f0;
+  --muted: #9aa4b2;
+}
+html { scroll-behavior: smooth; }
+body { @apply bg-slate-950 text-slate-100; }
+.prose { @apply prose-invert; }
+a { @apply text-brand hover:text-brand-light transition; }
+.card { @apply bg-slate-900/60 border border-slate-800 rounded-2xl shadow-lg; }

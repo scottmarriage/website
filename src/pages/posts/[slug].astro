@@ -1,0 +1,25 @@
+---
+import Base from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((p) => ({
+    params: { slug: p.slug },
+    props: { entry: p },
+  }));
+}
+
+const { entry } = Astro.props;
+if (!entry) {
+  throw new Error("Post not found. Check that the slug and route match your MDX filename.");
+}
+
+const { Content } = await entry.render();
+const pageTitle = entry.data?.title ?? "Post";
+---
+<Base title={pageTitle}>
+  <article class="prose mx-auto">
+    <Content />
+  </article>
+</Base>

@@ -1,0 +1,13 @@
+
+---
+import "../styles/global.css";
+const { frontmatter } = Astro.props;
+---
+<article class="prose mx-auto">
+  <h1>{frontmatter.title}</h1>
+  <p class="!mt-0 text-slate-400">{frontmatter.description || ""}</p>
+  <div class="not-prose my-4 flex gap-2 flex-wrap">
+    {(frontmatter.tech || []).map(t => <span class="px-2 py-1 text-xs rounded-full bg-slate-800/80 border border-slate-700">{t}</span>)}
+  </div>
+  <slot />
+</article>
