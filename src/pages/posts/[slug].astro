@@ -15,11 +15,27 @@ if (!entry) {
   throw new Error("Post not found. Check that the slug and route match your MDX filename.");
 }
 
-const { Content } = await entry.render();
-const pageTitle = entry.data?.title ?? "Post";
+const { Content, headings } = await entry.render();
+
+function fmt(d?: string | Date) {
+  if (!d) return "";
+  const dt = new Date(d);
+  return dt.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+}
 ---
-<Base title={pageTitle}>
-  <article class="prose mx-auto">
+<Base title={entry.data?.title ?? "Post"}>
+  <!-- Top bar: back arrow (left), title (center/left), date (right) -->
+  <div class="flex items-center justify-between mb-6">
+    <a href="/posts" class="text-slate-400 hover:text-brand" aria-label="Back to posts">←</a>
+    <h1 class="text-xl md:text-2xl font-semibold mx-4 flex-1 text-center md:text-left">
+      {entry.data?.title}
+    </h1>
+    <div class="text-xs text-slate-400 ml-4 whitespace-nowrap">
+      {fmt(entry.data?.date)}
+    </div>
+  </div>
+
+  <article class="prose max-w-none text-left">
     <Content />
   </article>
 </Base>
