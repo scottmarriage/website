@@ -1,13 +1,50 @@
-
 ---
 import Base from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import SectionHeading from "../components/SectionHeading.astro";
 ---
-<Base title="Contact">
-  <h1 class="text-3xl font-bold mb-6">Contact</h1>
-  <form class="card p-5 space-y-3" action="https://formspree.io/f/mdklvkaj" method="POST">
-    <input class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="name" placeholder="Your name" required />
-    <input class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="email" type="email" placeholder="Email" required />
-    <textarea class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-700" name="message" placeholder="Message" rows="5" required></textarea>
-    <button class="px-4 py-2 rounded-xl bg-brand text-white" type="submit">Send</button>
-  </form>
+<Base title="Contact — Scott Marriage" description="Get in touch with Scott Marriage.">
+  <Container class="py-16">
+    <SectionHeading eyebrow="Contact" title="Get in touch" description="Send a message and I'll get back to you." />
+    <form class="card mt-10 max-w-lg space-y-4 p-6" action="https://formspree.io/f/mdklvkaj" method="POST">
+      <div>
+        <label for="name" class="mb-1 block font-mono text-xs uppercase tracking-widest text-ink-faint">Name</label>
+        <input
+          id="name"
+          name="name"
+          placeholder="Your name"
+          required
+          class="w-full rounded-lg border border-border bg-surface px-3 py-2 text-ink placeholder:text-ink-faint focus:border-brand-500 focus:outline-none"
+        />
+      </div>
+      <div>
+        <label for="email" class="mb-1 block font-mono text-xs uppercase tracking-widest text-ink-faint">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          required
+          class="w-full rounded-lg border border-border bg-surface px-3 py-2 text-ink placeholder:text-ink-faint focus:border-brand-500 focus:outline-none"
+        />
+      </div>
+      <div>
+        <label for="message" class="mb-1 block font-mono text-xs uppercase tracking-widest text-ink-faint">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="What's on your mind?"
+          rows="5"
+          required
+          class="w-full rounded-lg border border-border bg-surface px-3 py-2 text-ink placeholder:text-ink-faint focus:border-brand-500 focus:outline-none"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-600"
+      >
+        Send message
+      </button>
+    </form>
+  </Container>
 </Base>

@@ -1,0 +1,19 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import Container from "./Container.astro";
+import HeroIntro from "./HeroIntro";
+
+const hasHeadshot = fs.existsSync(path.join(process.cwd(), "public/images/headshot.jpg"));
+---
+<section class="py-20 sm:py-28">
+  <Container>
+    <HeroIntro
+      client:load
+      name="Scott Marriage"
+      roles={["Software Engineer", "Data Scientist"]}
+      bio="I build cloud infrastructure and data-driven systems on AWS, with a growing focus on shipping the frontend that sits on top of them. This site is one of the things I'm building."
+      hasHeadshot={hasHeadshot}
+    />
+  </Container>
+</section>

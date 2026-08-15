@@ -1,0 +1,40 @@
+---
+import Container from "./Container.astro";
+import ThemeToggle from "./ThemeToggle";
+import MobileMenu from "./MobileMenu";
+
+const links = [
+  { href: "/projects", label: "Projects" },
+  { href: "/skills", label: "Skills" },
+  { href: "/posts", label: "Posts" },
+  { href: "/contact", label: "Contact" },
+];
+
+const path = new URL(Astro.request.url).pathname;
+---
+<header class="sticky top-0 z-40 border-b border-border bg-surface/80 backdrop-blur">
+  <Container class="relative">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="font-display text-lg font-semibold tracking-tight text-ink">
+        Scott Marriage
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 font-mono text-sm">
+        {links.map((link) => {
+          const active = path === link.href || path === `${link.href}/`;
+          return (
+            <a
+              href={link.href}
+              class={`transition-colors hover:text-brand-500 ${active ? "text-brand-500" : "text-ink-muted"}`}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </nav>
+      <div class="flex items-center gap-3">
+        <ThemeToggle client:load />
+        <MobileMenu client:load />
+      </div>
+    </div>
+  </Container>
+</header>

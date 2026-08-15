@@ -1,22 +1,60 @@
-
 ---
 import Base from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+import Hero from "../components/Hero.astro";
+import { getCollection } from "astro:content";
+
+const allProjects = await getCollection("projects");
+const featured = allProjects.filter((p) => p.data.featured).slice(0, 2);
 ---
 <Base>
-  <section class="grid md:grid-cols-2 gap-8 items-center">
-    <div>
-      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-        Hi, I'm Scott!
-      </h1>
-      <h2 class="font-bold leading-tight mt-2">
-        I'm a <span class="text-brand">Software Engineer</span> & <span class="text-brand">Data Scientist</span>
-      </h2>
-      <p class="mt-4 text-slate-300">
-        I build fast, accessible interfaces and craft data-driven experiences. Explore interactive demos and real-world projects.
-      </p>
-    </div>
-    <div class="card p-3 w-fit self-start justify-self-end">
-      <h2 class="font-semibold mb-2">Featured Project Demos</h2>
-    </div>
+  <Hero />
+
+  <section class="border-t border-border py-16">
+    <Container>
+      <SectionHeading
+        eyebrow="Featured work"
+        title="Recent projects"
+        description="A snapshot of what I'm building. Full list, including work in progress, lives on the projects page."
+      />
+      <div class="mt-10">
+        <ProjectGrid projects={featured} showComingSoon={true} />
+      </div>
+      <a href="/projects" class="mt-8 inline-block font-mono text-sm text-brand-500 hover:text-brand-400">
+        See all projects &rarr;
+      </a>
+    </Container>
+  </section>
+
+  <section class="border-t border-border py-16">
+    <Container>
+      <SectionHeading
+        eyebrow="Skills"
+        title="What I work with"
+        description="Cloud infrastructure and data work are where I spend most of my time; frontend is a newer, growing strength."
+      />
+      <div class="mt-10">
+        <SkillsGrid categories={["cloud-infra", "data-ml"]} />
+      </div>
+      <a href="/skills" class="mt-8 inline-block font-mono text-sm text-brand-500 hover:text-brand-400">
+        See full skill set &rarr;
+      </a>
+    </Container>
+  </section>
+
+  <section class="border-t border-border py-16">
+    <Container class="flex flex-col items-center gap-4 text-center">
+      <h2 class="font-display text-h2 font-semibold text-ink">Want to talk about a project?</h2>
+      <p class="max-w-md text-ink-muted">I'm happy to chat about cloud architecture, data pipelines, or this site's build.</p>
+      <a
+        href="/contact"
+        class="mt-2 rounded-xl bg-brand-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-600"
+      >
+        Get in touch
+      </a>
+    </Container>
   </section>
 </Base>

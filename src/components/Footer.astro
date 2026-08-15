@@ -1,0 +1,49 @@
+---
+import Container from "./Container.astro";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { SiGooglescholar } from "react-icons/si";
+
+const year = new Date().getFullYear();
+const hasResume = false;
+---
+<footer class="border-t border-border">
+  <Container class="flex flex-col items-center gap-4 py-10 text-sm text-ink-muted sm:flex-row sm:justify-between">
+    <div class="flex items-center gap-4">
+      <a
+        href="https://www.linkedin.com/in/scott-marriage/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex text-ink-muted hover:text-brand-500"
+        aria-label="LinkedIn"
+      >
+        <FaLinkedin size={18} />
+      </a>
+      <a
+        href="https://github.com/scottmarriage/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex text-ink-muted hover:text-brand-500"
+        aria-label="GitHub"
+      >
+        <FaGithub size={18} />
+      </a>
+      <a
+        href="https://scholar.google.com/citations?user=1m5kJm8AAAAJ"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex text-ink-muted hover:text-brand-500"
+        aria-label="Google Scholar"
+      >
+        <SiGooglescholar size={18} />
+      </a>
+      {hasResume && (
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-ink-muted hover:text-brand-500">
+          Resume
+        </a>
+      )}
+    </div>
+    <p class="font-mono text-xs text-ink-faint">
+      © {year} Scott Marriage · Hosted on Vercel
+    </p>
+  </Container>
+</footer>

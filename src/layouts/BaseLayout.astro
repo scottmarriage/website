@@ -1,9 +1,17 @@
-
 ---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/space-grotesk";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
 import "../styles/global.css";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { SiGooglescholar } from "react-icons/si";
-const { title = "Scott Marriage — Software Engineer & Data Scientist", description = "Portfolio and live demos." } = Astro.props;
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Terminal from "../components/Terminal";
+
+const {
+  title = "Scott Marriage — Software Engineer & Data Scientist",
+  description = "Cloud-focused software engineer and data scientist. Projects, notes, and demos.",
+} = Astro.props;
 ---
 <html lang="en" class="h-full">
   <head>
@@ -12,55 +20,21 @@ const { title = "Scott Marriage — Software Engineer & Data Scientist", descrip
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+        const theme = stored === "light" || stored === "dark" ? stored : prefersLight ? "light" : "dark";
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
+    </script>
   </head>
   <body class="min-h-screen">
-<header class="sticky top-0 z-40 backdrop-blur bg-slate-950/70 border-b border-slate-800">
-  <nav class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-    <a href="/" class="font-semibold tracking-tight flex items-center gap-2">
-      Scott Marriage
-    </a>
-    <div class="flex items-center gap-4 text-slate-400">
-      <a
-        href="https://www.linkedin.com/in/scott-marriage/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex hover:text-brand"
-        aria-label="LinkedIn"
-      >
-        <FaLinkedin size={24} />
-      </a>
-      <a
-        href="https://github.com/scottmarriage/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex hover:text-brand"
-        aria-label="GitHub"
-      >
-        <FaGithub size={24} />
-      </a>
-      <a
-        href="https://scholar.google.com/citations?user=1m5kJm8AAAAJ"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex hover:text-brand"
-        aria-label="Google Scholar"
-      >
-        <SiGooglescholar size={24} />
-      </a>
-    </div>
-    <div class="space-x-4 text-sm">
-      <a href="/projects">Projects</a>
-      <a href="/showcase">Skills Showcase</a>
-      <a href="/posts">Posts</a>
-      <a href="/contact">Contact</a>
-    </div>
-  </nav>
-</header>
-    <main class="mx-auto max-w-6xl px-4 py-8">
+    <Header />
+    <main>
       <slot />
     </main>
-    <footer class="border-t border-slate-800 py-10 text-center text-sm text-slate-400">
-      © {new Date().getFullYear()} Scott Marriage
-    </footer>
+    <Footer />
+    <Terminal client:visible />
   </body>
 </html>

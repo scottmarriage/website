@@ -1,0 +1,22 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((p) => ({
+    params: { slug: p.slug },
+    props: { entry: p },
+  }));
+}
+
+const { entry } = Astro.props;
+if (!entry) {
+  throw new Error("Project not found. Check that the slug and route match your MDX filename.");
+}
+
+const { Content } = await entry.render();
+---
+<ProjectLayout frontmatter={entry.data}>
+  <Content />
+</ProjectLayout>

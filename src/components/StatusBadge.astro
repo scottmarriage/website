@@ -1,0 +1,15 @@
+---
+const { status } = Astro.props;
+
+const STYLES: Record<string, { label: string; className: string }> = {
+  completed: { label: "Completed", className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30" },
+  "in-progress": { label: "In progress", className: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30" },
+  concept: { label: "Concept", className: "bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-500/30" },
+  archived: { label: "Archived", className: "bg-slate-500/10 text-ink-faint border-border" },
+};
+
+const style = STYLES[status] ?? STYLES.completed;
+---
+<span class={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs ${style.className}`}>
+  {style.label}
+</span>
