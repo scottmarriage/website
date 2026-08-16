@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import SkillsGrid from "../components/SkillsGrid.astro";
+---
+<Base title="Skills — Scott Marriage" description="Languages, cloud infrastructure, and data tools I work with day to day.">
+  <Container class="py-16">
+    <SectionHeading
+      eyebrow="Skills"
+      title="Tools I reach for"
+      description="Cloud and data are where I've spent the most time; frontend is a newer, growing part of my toolkit."
+    />
+    <div class="mt-10">
+      <SkillsGrid />
+    </div>
+  </Container>
+</Base>

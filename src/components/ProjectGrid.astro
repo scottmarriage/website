@@ -1,0 +1,14 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+
+const { projects, showComingSoon = true } = Astro.props;
+---
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {projects.map((project: any) => <ProjectCard project={project} />)}
+  {showComingSoon && (
+    <div class="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border p-5 text-center text-ink-faint">
+      <span class="font-display text-lg font-semibold">More on the way</span>
+      <p class="text-sm">I'm building out a few more projects worth sharing — check back soon.</p>
+    </div>
+  )}
+</div>

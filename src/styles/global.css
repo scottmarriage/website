@@ -1,16 +1,58 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #0b0f1a;
-  --card: #10162a;
-  --text: #e6e9f0;
-  --muted: #9aa4b2;
+  --bg: #ffffff;
+  --bg-elevated: #f8fafc;
+  --bg-subtle: #f1f5f9;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #475569;
+  --text-faint: #94a3b8;
 }
-html { scroll-behavior: smooth; }
-body { @apply bg-slate-950 text-slate-100; }
-.prose { @apply prose-invert; }
-a { @apply text-brand hover:text-brand-light transition; }
-.card { @apply bg-slate-900/60 border border-slate-800 rounded-2xl shadow-lg; }
+
+.dark {
+  --bg: #05070d;
+  --bg-elevated: #0e1424;
+  --bg-subtle: #131a2c;
+  --border: #232b40;
+  --text: #e6e9f0;
+  --text-muted: #9aa4b2;
+  --text-faint: #616b7d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-ink font-sans antialiased transition-colors duration-200;
+}
+
+.prose {
+  @apply prose-invert;
+}
+
+a {
+  @apply text-brand-500 hover:text-brand-400 transition-colors;
+}
+
+.card {
+  @apply bg-surface-elevated border border-border rounded-2xl shadow-card;
+}
+
+.container-page {
+  @apply mx-auto max-w-content px-6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
