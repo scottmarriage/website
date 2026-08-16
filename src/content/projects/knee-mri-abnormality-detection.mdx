@@ -1,0 +1,15 @@
+---
+title: "Knee MRI Abnormality Detection"
+description: "A planned deep learning project on the RSNA knee MRI dataset — training a classifier to flag abnormalities and visualizing what the model attends to."
+tech: ["PyTorch", "CNN", "Grad-CAM", "Python"]
+status: "concept"
+featured: false
+---
+
+Not started yet — this is a project I'm planning to build using the RSNA knee MRI abnormality detection dataset from Kaggle.
+
+The plan: train a CNN classifier on the scans, then build a small visualization layer on top of the results — likely a Grad-CAM style heatmap showing which regions of a scan the model weighted most heavily, alongside the usual ROC/loss curves.
+
+One constraint I'm building around from the start: the dataset's competition terms restrict redistributing real patient scans. Any public visualization on this site will use anonymized or synthetic examples, not raw dataset images.
+
+Check back once there's a trained model and real results to show.
